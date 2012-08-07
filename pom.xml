@@ -6,6 +6,8 @@
 	<packaging>pom</packaging>
 	<version>0.0.2-SNAPSHOT</version>
 
+	<name>Oregami Parent POM</name>
+
   <modules>
     <module>java</module>
   </modules>
