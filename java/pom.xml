@@ -2,13 +2,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>oregami</artifactId>
+	<groupId>org.oregami</groupId>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>war</packaging>
 	
-	<parent>
-		<groupId>org.oregami</groupId>
-		<artifactId>global</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
-	</parent>
+	
+<!-- 	<parent> -->
+<!-- 		<groupId>org.oregami</groupId> -->
+<!-- 		<artifactId>global</artifactId> -->
+<!-- 		<version>0.0.2-SNAPSHOT</version> -->
+<!-- 	</parent> -->
 	
 	<name>Oregami Webapp</name>
 
