@@ -10,8 +10,8 @@
 	<scm>
 <!-- 		<connection>scm:git:file:///Users/sebastian/git/oregami.org</connection> -->
 		<connection>scm:git:https://github.com/oregami/oregami.org/</connection>
+		<url>scm:git:https://github.com/oregami/oregami.org/</url>		
 	</scm>
-	
 	<!-- <parent> -->
 	<!-- <groupId>org.oregami</groupId> -->
 	<!-- <artifactId>global</artifactId> -->
