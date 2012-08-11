@@ -172,7 +172,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<doCheck>true</doCheck>
+					<doCheck>false</doCheck>
 					<doUpdate>true</doUpdate>
 					<shortRevisionLength>5</shortRevisionLength>					
 				</configuration>
