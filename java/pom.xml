@@ -7,6 +7,9 @@
 	<packaging>war</packaging>
 
 
+	<scm>
+		<url>scm:git:file:///Users/sebastian/git/oregami.org</url>
+	</scm>
 	<!-- <parent> -->
 	<!-- <groupId>org.oregami</groupId> -->
 	<!-- <artifactId>global</artifactId> -->
