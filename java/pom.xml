@@ -8,8 +8,9 @@
 
 
 	<scm>
-		<url>scm:git:file:///Users/sebastian/git/oregami.org</url>
+		<connection>scm:git:file:///Users/sebastian/git/oregami.org</connection>
 	</scm>
+	
 	<!-- <parent> -->
 	<!-- <groupId>org.oregami</groupId> -->
 	<!-- <artifactId>global</artifactId> -->
