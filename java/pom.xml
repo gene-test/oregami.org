@@ -175,7 +175,7 @@
 				<configuration>
 					<doCheck>false</doCheck>
 					<doUpdate>true</doUpdate>
-					<shortRevisionLength>5</shortRevisionLength>					
+<!-- 					<shortRevisionLength>5</shortRevisionLength>					 -->
 				</configuration>
 			</plugin>
 
