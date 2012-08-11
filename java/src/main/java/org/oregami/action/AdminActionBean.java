@@ -16,8 +16,13 @@
  ******************************************************************************/
 package org.oregami.action;
 
-import java.util.Iterator;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
+import java.util.jar.Attributes;
+import java.util.jar.Manifest;
 
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -35,6 +40,25 @@ public class AdminActionBean extends BaseActionBean implements ActionBean {
 
 	@DefaultHandler
 	public Resolution defaultHandler() {
+		String appServerHome = getContext().getServletContext().getRealPath("/");
+
+		File manifestFile = new File(appServerHome, "META-INF/MANIFEST.MF");
+		 
+		Manifest mf = new Manifest();
+		try {
+			mf.read(new FileInputStream(manifestFile));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Attributes atts = mf.getMainAttributes();
+
+		System.out.println("Version: " + atts.getValue("Implementation-Version"));
+		System.out.println("Build: " + atts.getValue("Implementation-Build"));
 		
 		return new ForwardResolution("/jsp/admin/index.jsp");
 	}
