@@ -4,3 +4,7 @@ java/target
 .DS_Store
 /java/oregami.log
 /java/.settings
+/java/work
+/java/.settings
+/java/.project
+/java/.classpath

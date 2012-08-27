@@ -10,6 +10,31 @@ import org.eclipse.jetty.webapp.WebAppContext;
 
 public class Start {
 	public static void main(String[] args) throws Exception {
+
+		org.hsqldb.server.Server hsqlServer = startHSQLDb();
+		Server jettyServer = startJetty();
+
+		System.in.read();
+		System.out.println(">>> STOPPING EMBEDDED JETTY SERVER");
+		jettyServer.stop();
+		jettyServer.join();
+		hsqlServer.stop();
+	}
+
+	protected static org.hsqldb.server.Server startHSQLDb() {
+		org.hsqldb.server.Server hsqlServer = new org.hsqldb.server.Server();
+		hsqlServer.setSilent(true);
+		hsqlServer.setLogWriter(null);
+		hsqlServer.setDatabaseName(0, "oregami");
+		hsqlServer.setDatabasePath(0, "file:work/oregamidb");
+		hsqlServer.setPort(4000);
+
+		hsqlServer.start();
+
+		return hsqlServer;
+	}
+
+	public static Server startJetty() {
 		Server server = new Server();
 		SocketConnector connector = new SocketConnector();
 
@@ -33,10 +58,6 @@ public class Start {
 			sslConnector.setPort(8443);
 			sslConnector.setAcceptors(4);
 			server.addConnector(sslConnector);
-
-			System.out.println("SSL access to the quickstart has been enabled on port 8443");
-			System.out.println("You can access the application using SSL on https://localhost:8443");
-			System.out.println();
 		}
 
 		WebAppContext bb = new WebAppContext();
@@ -50,16 +71,14 @@ public class Start {
 
 		server.setHandler(bb);
 
+		System.out.println(">>> STARTING EMBEDDED JETTY SERVER, PRESS ANY KEY TO STOP");
 		try {
-			System.out.println(">>> STARTING EMBEDDED JETTY SERVER, PRESS ANY KEY TO STOP");
 			server.start();
-			System.in.read();
-			System.out.println(">>> STOPPING EMBEDDED JETTY SERVER");
-			server.stop();
-			server.join();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
+
+		return server;
 	}
 }
