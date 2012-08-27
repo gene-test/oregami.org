@@ -2,3 +2,5 @@
 java/target
 #Mac OSX files
 .DS_Store
+/java/oregami.log
+/java/.settings
