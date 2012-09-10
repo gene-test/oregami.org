@@ -10,10 +10,11 @@
 <body>
 	<h2><fmt:message key="all_games"/></h2>
 		<c:forEach items="${actionBean.gameList}" var="game">
-			<span>${game.mainTitle}</span> 
-				<stripes:link href="/game/${game.id}">Prototyp-View</stripes:link>
-				<stripes:link href="/tree/${game.id}">Tree-View</stripes:link>
-			<br/>
+			<li>
+				<span>${game.mainTitle}</span> 
+					<stripes:link href="/game/${game.id}">Prototyp-View</stripes:link>
+					<stripes:link href="/tree/${game.id}">Tree-View</stripes:link>
+			</li>
 		</c:forEach>
 <%@ include file="/loginbox.jsp" %> 
 
