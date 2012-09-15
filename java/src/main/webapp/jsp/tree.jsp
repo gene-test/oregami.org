@@ -15,15 +15,15 @@
 	type="text/css"></link>
 <script src="${contextPath}/js/jquery.dynatree.js"
 	type="text/javascript"></script>
-	
-<script type="text/javascript" src="${contextPath}/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>	
+
+<script type="text/javascript" src="${contextPath}/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <link rel="stylesheet" href="${contextPath}/js/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 
 
 <title>Treeview of Game: ${actionBean.loadedGame.mainTitle}</title>
 
 <script type="text/javascript">
-	
+
 	$(document).ready(function() {
 		$("#tree").dynatree({
 			onActivate : function(node) {
@@ -42,8 +42,8 @@
 			node.expand(val);
 		});
 	}
-	
-	
+
+
 	function showScreenshot(file) {
 		//alert(file + ", " + bool);
 		$("body").append("<div onclick='javascript:hideScreenshot(" + file + ");' style='z-index:1000; position: fixed; right:10px; top:10px;' id='xx'>"
@@ -80,20 +80,20 @@
 		<ul>
 			<li>${actionBean.loadedGame.mainTitle}</li>
 			<c:if test="${!empty actionBean.loadedGame.releaseGroupList}">
-			<li class='folder'>ReleaseGroups (${actionBean.loadedGame.releaseGroupList.size()})
-				<ul>		
+			<li class='folder'>ReleaseGroups (${fn:length(actionBean.loadedGame.releaseGroupList)})
+				<ul>
 					<c:forEach items="${actionBean.loadedGame.releaseGroupList}" var="releaseGroup">
 						<li>${releaseGroup.system} (${releaseGroup.releaseGroupType})
 							<ul>
 							<c:if test="${!empty releaseGroup.releaseList}">
-							
-								<li class='folder'>Releases (${releaseGroup.releaseList.size()})
+
+								<li class='folder'>Releases (${fn:length(releaseGroup.releaseList)})
 									<ul>
 										<c:forEach items="${releaseGroup.releaseList}" var="release">
 											<li>${release.distribution} (${release.description})
 												<ul>
 												<c:if test="${!empty release.countryReleaseList}">
-													<li class='folder'>Countries (${release.countryReleaseList.size()})
+													<li class='folder'>Countries (${fn:length(release.countryReleaseList)})
 														<ul>
 															<c:forEach items="${release.countryReleaseList}" var="countryRelease">
 																<li>${countryRelease.country}: ${countryRelease.yearOfRelease}</li>
@@ -101,41 +101,41 @@
 														</ul>
 													</li>
 												</c:if>
-												
+
 												<c:if test="${!empty release.photoList}">
-													<li class="folder" data="unselectable: 'true'">Photos (${release.photoList.size()})
+													<li class="folder" data="unselectable: 'true'">Photos (${fn:length(release.photoList)})
 														<ul>
 														<li data="unselectable: 'true'">
 															<c:forEach items="${release.photoList}" var="photo" varStatus="status">
 																<c:if test="${(status.index)%6==0  && status.index>0}">
 																	<br/>
 																</c:if>
-				
-																<img 
+
+																<img
 																	onmouseover="showScreenshot('${contextPath}/images/photos/${photo.fileName}')"
 																	onmouseout="hideScreenshot('${contextPath}/images/photos/${photo.fileName}')"
-																	style="width:100px; padding: 2pt;" 
-																	src="${contextPath}/images/photos/${photo.fileName}" 
+																	style="width:100px; padding: 2pt;"
+																	src="${contextPath}/images/photos/${photo.fileName}"
 																	title="${photo.description} (${photo.type}) [${photo.fileName}]"
 																>
-																
+
 															</c:forEach>
 														</li>
 														</ul>
 													</li>
-												
-												</c:if>													
+
+												</c:if>
 												</ul>
 											</li>
-											
+
 										</c:forEach>
-										
+
 									</ul>
 								</li>
 							</c:if>
-							
+
 							<c:if test="${!empty releaseGroup.screenshotList}">
-								<li class="folder" data="unselectable: 'true'">Screenshots (${releaseGroup.screenshotList.size()})
+								<li class="folder" data="unselectable: 'true'">Screenshots (${fn:length(releaseGroup.screenshotList)})
 									<ul>
 										<li data="unselectable: 'true'">
 											<c:forEach items="${releaseGroup.screenshotList}" var="screenshot" varStatus="status">
@@ -143,29 +143,29 @@
 													<br/>
 												</c:if>
 
-												<img 
+												<img
 													onmouseover="showScreenshot('${contextPath}/images/screenshots/${screenshot.fileName}')"
 													onmouseout="hideScreenshot('${contextPath}/images/screenshots/${screenshot.fileName}')"
-													style="width:100px; padding: 2pt;" 
-													src="${contextPath}/images/screenshots/${screenshot.fileName}" 
+													style="width:100px; padding: 2pt;"
+													src="${contextPath}/images/screenshots/${screenshot.fileName}"
 													title="${screenshot.description} (${screenshot.screenshotType}) [${screenshot.fileName}]"
 												>
-												
+
 											</c:forEach>
-																					 	
+
 										</li>
 									</ul>
 								</li>
-							</c:if>								
-								
-							</ul>						
+							</c:if>
+
+							</ul>
 						</li>
 					</c:forEach>
 				</ul>
 			</li>
 			</c:if>
 			<c:if test="${!empty actionBean.loadedGame.screenshotList}">
-			<li class="folder">Screenshots (${actionBean.loadedGame.screenshotList.size()})
+			<li class="folder">Screenshots (${fn:length(actionBean.loadedGame.screenshotList)})
 				<ul>
 					<li><div style="background-color: #aaaaaa; border: 1px solid green;">
 						<c:forEach items="${actionBean.loadedGame.screenshotList}" var="screenshot">
