@@ -97,6 +97,11 @@
 		</dependency>
 		<!-- concrete Log4J Implementation for SLF4J API -->
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.6</version>
+		</dependency>		
+		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>6.0.33</version>
