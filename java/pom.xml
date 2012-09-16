@@ -8,9 +8,12 @@
 
 
 	<scm>
-<!-- 		<connection>scm:git:file:///Users/sebastian/git/oregami.org</connection> -->
+		<connection>scm:git:git@github.com:oregami/oregami.org.git</connection>
+		<url>scm:git:git@github.com:oregami/oregami.org.git/</url>  
+		<!-- 
 		<connection>scm:git:git@github.com:twendelmuth/oregami.org.git</connection>
 		<url>scm:git:git@github.com:twendelmuth/oregami.org.git</url>		
+		 -->
 	</scm>
 	<!-- <parent> -->
 	<!-- <groupId>org.oregami</groupId> -->
@@ -171,7 +174,7 @@
 				</configuration>
 			</plugin>
 
-<!-- 
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
@@ -190,7 +193,6 @@
 					<shortRevisionLength>5</shortRevisionLength>					 
 				</configuration>
 			</plugin>
--->
 
 		</plugins>
 
