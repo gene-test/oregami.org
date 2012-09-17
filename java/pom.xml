@@ -93,7 +93,6 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.6.6</version>
-			<scope>test</scope>
 		</dependency>
 		<!-- concrete Log4J Implementation for SLF4J API -->
 		<dependency>
