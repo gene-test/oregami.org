@@ -167,7 +167,7 @@ public abstract class MonkeyIsland {
 		gameMonkeyIsland.addTitle(new Title("The Secret of Monkey Island 2", LanguageKey.DE));
 		gameMonkeyIsland.addTitle(new Title("The Secret of Monkey Island 2: Le Chuck's Revenge", LanguageKey.EN));
 
-		DaoManager.get().gameDaoManager.saveEntity(gameMonkeyIsland);
+		DaoManager.get().getGameDaoManager().saveEntity(gameMonkeyIsland);
 
 		// XStream xstream = new XStream();
 		// xstream.alias("game", Game.class);

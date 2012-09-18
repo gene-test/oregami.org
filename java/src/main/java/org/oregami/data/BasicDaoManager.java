@@ -4,12 +4,12 @@ import org.oregami.entities.BaseEntity;
 
 public interface BasicDaoManager<T extends BaseEntity> {
 
-	public void saveEntity(T entity);
+	void saveEntity(T entity);
 
-	public void updateEntity(T entity);
+	void updateEntity(T entity);
 
-	public void deleteEntity(T entity);
+	void deleteEntity(T entity);
 
-	public T getEntityById(Object id);
+	T getEntityById(Object id);
 
 }

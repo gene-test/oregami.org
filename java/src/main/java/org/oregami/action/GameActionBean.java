@@ -37,11 +37,7 @@ public class GameActionBean extends BaseActionBean implements ActionBean {
 
 		App.ensureDatabaseIsFilled();
 
-		System.out.println(DaoManager.get());
-		System.out.println(DaoManager.get().gameDaoManager);
-		loadedGame = DaoManager.get().gameDaoManager.getEntityById(Long.parseLong(gameId));
-		System.out.println(loadedGame.getTitleList());
-		System.out.println("Geladen: " + loadedGame.getMainTitle() + " (" + loadedGame.getDescription() + ")");
+		loadedGame = DaoManager.get().getGameDaoManager().getEntityById(Long.parseLong(gameId));
 		return new ForwardResolution("/jsp/game.jsp");
 	}
 

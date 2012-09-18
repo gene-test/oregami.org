@@ -20,10 +20,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-
+import org.oregami.action.DaoManager;
 import org.oregami.entities.User;
 import org.oregami.keyobjects.KeyObjects.RoleKey;
 
@@ -54,11 +51,6 @@ public class App {
 	}
 
 	public static void initUser() {
-		EntityManagerFactory entityManagerFactory = HibernateJpaUtil.getEntityManagerFactory();
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		EntityTransaction tx = entityManager.getTransaction();
-		tx.begin();
-
 		User userAdmin = new User();
 		userAdmin.setUsername("admin");
 		userAdmin.setEmail("gene@kultpower.de");
@@ -74,21 +66,17 @@ public class App {
 		user.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
 		user.getRollList().add(RoleKey.User);
 
-		entityManager.persist(userAdmin);
-		entityManager.persist(user);
-
-		tx.commit();
-		entityManager.close();
-
+		DaoManager.get().getUserDaoManager().saveEntity(userAdmin);
+		DaoManager.get().getUserDaoManager().saveEntity(user);
 	}
 
 	public static void ensureDatabaseIsFilled() {
-		// if (GameDAO.getAllGames().size() == 0) {
-		MonkeyIsland.init();
-		// ResidentEvil.init();
-		// XWing.init();
-		// App.initUser();
-		// }
+		if (DaoManager.get().getGameDaoManager().countAllGames() == 0) {
+			MonkeyIsland.init();
+			ResidentEvil.init();
+			XWing.init();
+			App.initUser();
+		}
 	}
 
 }
