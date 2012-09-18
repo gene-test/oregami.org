@@ -14,38 +14,26 @@
  * 	You should have received a copy of the GNU Affero General Public License
  * 	along with this program. If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package org.oregami.action;
+package org.oregami.util;
 
-import net.sourceforge.stripes.action.ActionBean;
-import net.sourceforge.stripes.action.ForwardResolution;
-import net.sourceforge.stripes.action.Resolution;
-import net.sourceforge.stripes.action.UrlBinding;
-
+import org.oregami.action.DaoManager;
 import org.oregami.entities.Game;
-import org.oregami.util.BaseActionBean;
-import org.springframework.transaction.annotation.Transactional;
 
-@UrlBinding("/game/{gameId=2}")
-public class GameActionBean extends BaseActionBean implements ActionBean {
+@Deprecated
+public class WebApp {
 
-	private Game loadedGame = null;
-	private String gameId;
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Game monkeyIsland = DaoManager.get().getGameDaoManager().getEntityById(1);
 
-	@Transactional
-	public Resolution defaultHandler() {
-		loadedGame = DaoManager.get().getGameDaoManager().getEntityById(Long.parseLong(gameId));
-		return new ForwardResolution("/jsp/game.jsp");
+		WebGuiService service = new WebGuiService();
+
+		String webGui = service.getWebGui(monkeyIsland);
+
+		System.out.println(webGui);
+
 	}
 
-	public String getGameId() {
-		return gameId;
-	}
-
-	public void setGameId(String gameId) {
-		this.gameId = gameId;
-	}
-
-	public Game getLoadedGame() {
-		return loadedGame;
-	}
 }

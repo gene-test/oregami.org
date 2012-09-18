@@ -23,7 +23,6 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
-import org.oregami.data.App;
 import org.oregami.entities.Game;
 import org.oregami.util.BaseActionBean;
 
@@ -33,9 +32,6 @@ public class GamesActionBean extends BaseActionBean implements ActionBean {
 	private List<Game> gameList = null;
 
 	public Resolution defaultHandler() {
-
-		App.ensureDatabaseIsFilled();
-
 		gameList = DaoManager.get().getGameDaoManager().getAllGames();
 		return new ForwardResolution("/jsp/gameslist.jsp");
 

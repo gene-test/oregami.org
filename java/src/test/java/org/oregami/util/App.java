@@ -14,29 +14,23 @@
  * 	You should have received a copy of the GNU Affero General Public License
  * 	along with this program. If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package org.oregami.data;
+package org.oregami.util;
 
-import org.oregami.action.DaoManager;
-import org.oregami.entities.Game;
-import org.oregami.util.WebGuiService;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
-public class WebApp {
+/**
+ * Hello world!
+ * 
+ */
+public class App {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
 
-		App.ensureDatabaseIsFilled();
-
-		Game monkeyIsland = DaoManager.get().getGameDaoManager().getEntityById(1);
-
-		WebGuiService service = new WebGuiService();
-
-		String webGui = service.getWebGui(monkeyIsland);
-
-		System.out.println(webGui);
-
+	public static String now() {
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+		return sdf.format(cal.getTime());
 	}
 
 }

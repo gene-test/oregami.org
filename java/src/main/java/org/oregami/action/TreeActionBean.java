@@ -24,7 +24,6 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
-import org.oregami.data.App;
 import org.oregami.entities.Game;
 import org.oregami.util.BaseActionBean;
 import org.oregami.util.WebGuiService;
@@ -39,9 +38,6 @@ public class TreeActionBean extends BaseActionBean implements ActionBean {
 	EntityManager entityManagerLocal;
 
 	public Resolution defaultHandler() {
-
-		App.ensureDatabaseIsFilled();
-
 		loadedGame = DaoManager.get().getGameDaoManager().getEntityById(Long.parseLong(gameId));
 		System.out.println("Geladen: " + loadedGame.getMainTitle() + " (" + loadedGame.getDescription() + ")");
 		return new ForwardResolution("/jsp/tree.jsp");

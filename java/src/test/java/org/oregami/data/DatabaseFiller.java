@@ -1,20 +1,7 @@
-/*******************************************************************************
- * Copyright (C) 2012  Oregami.org, Germany http://www.oregami.org
- * 
- * 	This program is free software: you can redistribute it and/or modify
- * 	it under the terms of version 3 or any later version of the
- * 	GNU Affero General Public License as published by the Free Software 
- * 	Foundation.
- * 	
- * 	This program is distributed in the hope that it will be useful,
- * 	but WITHOUT ANY WARRANTY; without even the implied warranty of
- * 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * 	GNU Affero General Public License for more details.	
- * 	
- * 	You should have received a copy of the GNU Affero General Public License
- * 	along with this program. If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
 package org.oregami.data;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 import org.oregami.action.DaoManager;
 import org.oregami.entities.CountryRelease;
@@ -24,22 +11,29 @@ import org.oregami.entities.Release;
 import org.oregami.entities.ReleaseGroup;
 import org.oregami.entities.Screenshot;
 import org.oregami.entities.Title;
+import org.oregami.entities.User;
 import org.oregami.keyobjects.KeyObjects.CountryKey;
 import org.oregami.keyobjects.KeyObjects.DistributionKey;
 import org.oregami.keyobjects.KeyObjects.LanguageKey;
 import org.oregami.keyobjects.KeyObjects.PhotoType;
 import org.oregami.keyobjects.KeyObjects.ReleaseGroupType;
+import org.oregami.keyobjects.KeyObjects.RoleKey;
 import org.oregami.keyobjects.KeyObjects.ScreenshotType;
 import org.oregami.keyobjects.KeyObjects.SystemKey;
 
-public abstract class MonkeyIsland {
+/**
+ * Class to fill the database with some sample entities.
+ * 
+ * @author twendelmuth
+ * 
+ */
+public class DatabaseFiller {
 
-	public static void init() {
+	public static void addMonkeyIsland() {
 		Game gameMonkeyIsland = new Game();
-		// gameMonkeyIsland.setId(1l);
 
 		gameMonkeyIsland.setMainTitle("Monkey Island");
-		gameMonkeyIsland.setDescription("Tolles Spiel mit viel Humor! (" + App.now() + ")");
+		gameMonkeyIsland.setDescription("Tolles Spiel mit viel Humor! (" + new Date() + ")");
 
 		ReleaseGroup releaseGroupDos = new ReleaseGroup("DOS", SystemKey.MSDOS, ReleaseGroupType.Original);
 		Release releaseMsdos1_1 = new Release("Veröffentlichung 1-1 (PC, 5,25, DV, 256 Farben)", DistributionKey.RegularBox);
@@ -168,13 +162,142 @@ public abstract class MonkeyIsland {
 		gameMonkeyIsland.addTitle(new Title("The Secret of Monkey Island 2: Le Chuck's Revenge", LanguageKey.EN));
 
 		DaoManager.get().getGameDaoManager().saveEntity(gameMonkeyIsland);
-
-		// XStream xstream = new XStream();
-		// xstream.alias("game", Game.class);
-		// turn it into XML and display it - this is how it should be my friends, this easy
-		// String xml = xstream.toXML(spielMonkeyIsland);
-		// System.out.println(xml);
-
 	}
 
+	public static void addResidentEvilGame() {
+
+		Game gameResidentEvil = new Game();
+		// gameResidentEvil.setId(2l);
+
+		gameResidentEvil.setMainTitle("Resident Evil");
+		gameResidentEvil.setDescription("Horror-Shooter (" + new Date() + ")");
+
+		ReleaseGroup releaseGroupPlaystation = new ReleaseGroup("Playstation", SystemKey.SonyPlaystation, ReleaseGroupType.Original);
+
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470632_PSOGL2_01.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470633_PSOGL2_02.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470635_PSOGL2_04.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470635_PSOGL2_05.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470636_PSOGL2_06.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470636_PSOGL2_07.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470637_PSOGL2_08.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470638_PSOGL2_09.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470638_PSOGL2_10.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470638_PSOGL2_11.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470639_PSOGL2_12.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470639_PSOGL2_13.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470640_PSOGL2_14.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470641_PSOGL2_15.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470641_PSOGL2_16.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470642_PSOGL2_17.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470643_PSOGL2_18.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470645_PSOGL2_19.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470646_PSOGL2_20.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470648_PSOGL2_21.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470649_PSOGL2_22.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupPlaystation.addScreenshot(new Screenshot("residentevil/ps1/R_6737_1136470649_PSOGL2_23.jpg", ScreenshotType.unknown, "description not available"));
+
+		Release releasePs1_1 = new Release("Veröffentlichung 1-1 (PSX, CD, DV)", DistributionKey.RegularBox);
+		releasePs1_1.addCountryRelease(new CountryRelease(CountryKey.Deutschland, 1986));
+		releasePs1_1.addCountryRelease(new CountryRelease(CountryKey.Oesterreich, 1986));
+		releaseGroupPlaystation.addRelease(releasePs1_1);
+
+		Release releasePs1_2 = new Release("Veröffentlichung 1-2 (PSX, CD, DV, White Label)", DistributionKey.RegularBox);
+		releasePs1_2.addCountryRelease(new CountryRelease(CountryKey.Deutschland, 9999));
+		releaseGroupPlaystation.addRelease(releasePs1_2);
+
+		Release releasePs1_3 = new Release("Veröffentlichung 1-3 (PSX, CD, DV, Platinum Edition)", DistributionKey.RegularBox);
+		releasePs1_3.addCountryRelease(new CountryRelease(CountryKey.Deutschland, 9999));
+		releaseGroupPlaystation.addRelease(releasePs1_3);
+		//
+		//
+		gameResidentEvil.addReleaseGroup(releaseGroupPlaystation);
+
+		ReleaseGroup releaseGroupWindows = new ReleaseGroup("Windows", SystemKey.Windows, ReleaseGroupType.Original);
+
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880847_ResidentEvil-Screen2800729.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880848_ResidentEvil-Screen2800829.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880850_ResidentEvil-Screen2801129.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880851_ResidentEvil-Screen2801329.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880851_ResidentEvil-Screen2801529.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880852_ResidentEvil-Screen2801829.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880852_ResidentEvil-Screen2802529.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880853_ResidentEvil-Screen2802629.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880854_ResidentEvil-Screen2803129.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880854_ResidentEvil-Screen2803429.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880855_ResidentEvil-Screen2803829.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880856_ResidentEvil-Screen2804029.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880856_ResidentEvil-Screen2804129.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880857_ResidentEvil-Screen2804429.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880857_ResidentEvil-Screen2805129.jpg", ScreenshotType.unknown, "description not available"));
+		releaseGroupWindows.addScreenshot(new Screenshot("residentevil/windows/R_6737_1194880858_ResidentEvil-Screen2805229.jpg", ScreenshotType.unknown, "description not available"));
+
+		gameResidentEvil.addReleaseGroup(releaseGroupWindows);
+
+		gameResidentEvil.addTitle(new Title("Resident Evil", LanguageKey.DE));
+		gameResidentEvil.addTitle(new Title("Biohazard", LanguageKey.EN));
+		gameResidentEvil.addTitle(new Title("RE", LanguageKey.EN));
+
+		DaoManager.get().getGameDaoManager().saveEntity(gameResidentEvil);
+	}
+
+	public static void addXWingGame() {
+		Game gameXWing = new Game();
+
+		gameXWing.setMainTitle("X-Wing");
+		gameXWing.addTitle(new Title("Star Wars - X-Wing: Space Combat Simulator", LanguageKey.EN));
+		gameXWing.addTitle(new Title("Star Wars - X-Wing", LanguageKey.EN));
+
+		ReleaseGroup rgDos = new ReleaseGroup("DOS", SystemKey.MSDOS, ReleaseGroupType.Original);
+		gameXWing.addReleaseGroup(rgDos);
+
+		Release rgDos1_1 = new Release("Release 1-1 (PC, 3,5, EV mit dt. Handbuch))", DistributionKey.RegularBox);
+		rgDos1_1.addCountryRelease(new CountryRelease(CountryKey.Deutschland, 1993));
+		rgDos.addRelease(rgDos1_1);
+
+		Release rgDos1_2 = new Release("Release 1-2 (PC, 3,5, DV)", DistributionKey.RegularBox);
+		rgDos1_2.addCountryRelease(new CountryRelease(CountryKey.Deutschland, 1993));
+		rgDos.addRelease(rgDos1_2);
+
+		Release rgDos1_3 = new Release("Release 1-3 (PC, 3,5, US)", DistributionKey.RegularBox);
+		rgDos1_3.addCountryRelease(new CountryRelease(CountryKey.USA, 1993));
+		rgDos.addRelease(rgDos1_3);
+
+		Release rgDos1_4 = new Release("Release 1-4 (PC, 3,5, UK)", DistributionKey.RegularBox);
+		rgDos1_4.addCountryRelease(new CountryRelease(CountryKey.UK, 1993));
+		rgDos.addRelease(rgDos1_4);
+
+		ReleaseGroup rgDosEnhanced = new ReleaseGroup("DOS", SystemKey.MSDOS, ReleaseGroupType.Enhanced);
+		gameXWing.addReleaseGroup(rgDosEnhanced);
+
+		ReleaseGroup rgWinEnhanced = new ReleaseGroup("Windows", SystemKey.Windows, ReleaseGroupType.Enhanced);
+		gameXWing.addReleaseGroup(rgWinEnhanced);
+
+		ReleaseGroup rgMacEnhanced = new ReleaseGroup("Apple Macintosh", SystemKey.AppleMacintosh, ReleaseGroupType.Enhanced);
+		gameXWing.addReleaseGroup(rgMacEnhanced);
+
+		DaoManager.get().getGameDaoManager().saveEntity(gameXWing);
+	}
+
+	public static void addUsers() {
+
+		User userAdmin = new User();
+		userAdmin.setUsername("admin");
+		userAdmin.setEmail("gene@kultpower.de");
+		userAdmin.setPassword("admin");
+		userAdmin.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
+		userAdmin.getRollList().add(RoleKey.Admin);
+		userAdmin.getRollList().add(RoleKey.User);
+
+		User user = new User();
+		user.setUsername("user");
+		user.setEmail("gene@kultpower.de");
+		user.setPassword("user");
+		user.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
+		user.getRollList().add(RoleKey.User);
+
+		DaoManager.get().getUserDaoManager().saveEntity(userAdmin);
+		DaoManager.get().getUserDaoManager().saveEntity(user);
+
+	}
 }
