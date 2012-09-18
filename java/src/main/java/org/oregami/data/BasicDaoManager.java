@@ -10,6 +10,6 @@ public interface BasicDaoManager<T extends BaseEntity> {
 
 	public void deleteEntity(T entity);
 
-	public T getEntityById(Integer id);
+	public T getEntityById(Object id);
 
 }
