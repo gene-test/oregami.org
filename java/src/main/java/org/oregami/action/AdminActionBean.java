@@ -77,7 +77,7 @@ public class AdminActionBean extends BaseActionBean implements ActionBean {
 
 	public String getGameCount() {
 		int gameCount = DaoManager.get().getGameDaoManager().countAllGames();
-		String ret = "Momentan sind " + gameCount + " vorhanden";
+		String ret = "Momentan sind " + gameCount + " Games vorhanden";
 		// boolean first = true;
 		// for (Game game : games) {
 		// if (!first)

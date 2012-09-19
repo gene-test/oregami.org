@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" id="WebApp_ID" version="2.4">
-  <javaee:display-name>Archetype Created Web Application</javaee:display-name>
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>Archetype Created Web Application</display-name>
   <welcome-file-list>
     <welcome-file>Spiele</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -26,25 +28,25 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   <filter>
-    <javaee:display-name>Stripes Filter</javaee:display-name>
+    <display-name>Stripes Filter</display-name>
     <filter-name>StripesFilter</filter-name>
     <filter-class>net.sourceforge.stripes.controller.StripesFilter</filter-class>
     <init-param>
-      <javaee:param-name>ActionResolver.Packages</javaee:param-name>
-      <javaee:param-value>org.oregami.action</javaee:param-value>
+      <param-name>ActionResolver.Packages</param-name>
+      <param-value>org.oregami.action</param-value>
     </init-param>
     <init-param>
-      <javaee:param-name>LocalePicker.Locales</javaee:param-name>
-      <javaee:param-value>de,en</javaee:param-value>
+      <param-name>LocalePicker.Locales</param-name>
+      <param-value>de,en</param-value>
     </init-param>
     <init-param>
-      <javaee:param-name>Extension.Packages</javaee:param-name>
-      <javaee:param-value>org.oregami.stripes.ext</javaee:param-value>
+      <param-name>Extension.Packages</param-name>
+      <param-value>org.oregami.stripes.ext</param-value>
     </init-param>
   </filter>
   <filter>
-    <javaee:description>Dynamically maps URLs to ActionBeans.</javaee:description>
-    <javaee:display-name>Stripes Dynamic Mapping Filter</javaee:display-name>
+    <description>Dynamically maps URLs to ActionBeans.</description>
+    <display-name>Stripes Dynamic Mapping Filter</display-name>
     <filter-name>DynamicMappingFilter</filter-name>
     <filter-class>net.sourceforge.stripes.controller.DynamicMappingFilter</filter-class>
   </filter>
@@ -65,8 +67,8 @@
     <url-pattern>*.action</url-pattern>
   </servlet-mapping>
   <context-param>
-    <javaee:param-name>javax.servlet.jsp.jstl.fmt.localizationContext</javaee:param-name>
-    <javaee:param-value>StripesResources</javaee:param-value>
+    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+    <param-value>StripesResources</param-value>
   </context-param>
   <security-constraint>
     <web-resource-collection>
@@ -82,8 +84,8 @@
     <realm-name>Oregami demo application</realm-name>
   </login-config>
   <security-role>
-    <javaee:description>The role that is required to access the demo pages</javaee:description>
-    <javaee:role-name>demo-user-role</javaee:role-name>
+    <description>The role that is required to access the demo pages</description>
+    <role-name>demo-user-role</role-name>
   </security-role>
   <!-- Spring listener for initializing applicationContext.xml -->
   <listener>
