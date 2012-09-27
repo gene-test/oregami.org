@@ -28,15 +28,20 @@ import net.sourceforge.stripes.action.UrlBinding;
 
 import org.codemonkey.simplejavamail.Email;
 import org.codemonkey.simplejavamail.Mailer;
+import org.oregami.data.UserDaoManager;
 import org.oregami.entities.User;
 import org.oregami.util.BaseActionBean;
 import org.oregami.util.MailConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @UrlBinding("/Register")
 public class RegisterActionBean extends BaseActionBean implements ActionBean {
 
 	private String username;
 	private String email;
+
+	@Autowired
+	private static UserDaoManager userDaoManager;
 
 	@DefaultHandler
 	public Resolution defaultHandler() {
@@ -56,7 +61,7 @@ public class RegisterActionBean extends BaseActionBean implements ActionBean {
 		user.setEmail(email);
 		user.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
 
-		DaoManager.get().getUserDaoManager().saveEntity(user);
+		userDaoManager.saveEntity(user);
 
 		return new ForwardResolution("/Login");
 	}

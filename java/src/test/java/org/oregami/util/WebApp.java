@@ -16,8 +16,6 @@
  ******************************************************************************/
 package org.oregami.util;
 
-import org.oregami.action.DaoManager;
-import org.oregami.entities.Game;
 
 @Deprecated
 public class WebApp {
@@ -26,13 +24,13 @@ public class WebApp {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Game monkeyIsland = DaoManager.get().getGameDaoManager().getEntityById(1);
-
-		WebGuiService service = new WebGuiService();
-
-		String webGui = service.getWebGui(monkeyIsland);
-
-		System.out.println(webGui);
+		// Game monkeyIsland = DaoManager.get().getGameDaoManager().getEntityById(1);
+		//
+		// WebGuiService service = new WebGuiService();
+		//
+		// String webGui = service.getWebGui(monkeyIsland);
+		//
+		// System.out.println(webGui);
 
 	}
 

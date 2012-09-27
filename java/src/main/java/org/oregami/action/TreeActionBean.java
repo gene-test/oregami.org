@@ -16,17 +16,16 @@
  ******************************************************************************/
 package org.oregami.action;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
+import org.oregami.data.GameDaoManager;
 import org.oregami.entities.Game;
 import org.oregami.util.BaseActionBean;
 import org.oregami.util.WebGuiService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @UrlBinding("/tree/{gameId=2}")
 public class TreeActionBean extends BaseActionBean implements ActionBean {
@@ -34,11 +33,11 @@ public class TreeActionBean extends BaseActionBean implements ActionBean {
 	private Game loadedGame = null;
 	private String gameId;
 
-	EntityTransaction txLocal;
-	EntityManager entityManagerLocal;
+	@Autowired
+	private static GameDaoManager gameDaoManager;
 
 	public Resolution defaultHandler() {
-		loadedGame = DaoManager.get().getGameDaoManager().getEntityById(Long.parseLong(gameId));
+		loadedGame = gameDaoManager.getEntityById(Long.parseLong(gameId));
 		System.out.println("Geladen: " + loadedGame.getMainTitle() + " (" + loadedGame.getDescription() + ")");
 		return new ForwardResolution("/jsp/tree.jsp");
 	}

@@ -29,10 +29,15 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
+import org.oregami.data.GameDaoManager;
 import org.oregami.util.BaseActionBean;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @UrlBinding("/admin")
 public class AdminActionBean extends BaseActionBean implements ActionBean {
+
+	@Autowired
+	private GameDaoManager gameDaoManager;
 
 	@DefaultHandler
 	public Resolution defaultHandler() {
@@ -76,7 +81,7 @@ public class AdminActionBean extends BaseActionBean implements ActionBean {
 	 */
 
 	public String getGameCount() {
-		int gameCount = DaoManager.get().getGameDaoManager().countAllGames();
+		int gameCount = gameDaoManager.countAllGames();
 		String ret = "Momentan sind " + gameCount + " Games vorhanden";
 		// boolean first = true;
 		// for (Game game : games) {

@@ -3,7 +3,6 @@ package org.oregami.data;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import org.oregami.action.DaoManager;
 import org.oregami.entities.CountryRelease;
 import org.oregami.entities.Game;
 import org.oregami.entities.Photo;
@@ -20,6 +19,10 @@ import org.oregami.keyobjects.KeyObjects.ReleaseGroupType;
 import org.oregami.keyobjects.KeyObjects.RoleKey;
 import org.oregami.keyobjects.KeyObjects.ScreenshotType;
 import org.oregami.keyobjects.KeyObjects.SystemKey;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 /**
  * Class to fill the database with some sample entities.
@@ -27,9 +30,24 @@ import org.oregami.keyobjects.KeyObjects.SystemKey;
  * @author twendelmuth
  * 
  */
-public class DatabaseFiller {
+@Component
+public class DatabaseFiller implements ApplicationContextAware {
 
-	public static void addMonkeyIsland() {
+	private static DatabaseFiller instance;
+
+	private GameDaoManager gameDaoManager;
+
+	private UserDaoManager userDaoManager;
+
+	protected DatabaseFiller() {
+		instance = this;
+	}
+
+	public static DatabaseFiller get() {
+		return instance;
+	}
+
+	public void addMonkeyIsland() {
 		Game gameMonkeyIsland = new Game();
 
 		gameMonkeyIsland.setMainTitle("Monkey Island");
@@ -161,10 +179,10 @@ public class DatabaseFiller {
 		gameMonkeyIsland.addTitle(new Title("The Secret of Monkey Island 2", LanguageKey.DE));
 		gameMonkeyIsland.addTitle(new Title("The Secret of Monkey Island 2: Le Chuck's Revenge", LanguageKey.EN));
 
-		DaoManager.get().getGameDaoManager().saveEntity(gameMonkeyIsland);
+		gameDaoManager.saveEntity(gameMonkeyIsland);
 	}
 
-	public static void addResidentEvilGame() {
+	public void addResidentEvilGame() {
 
 		Game gameResidentEvil = new Game();
 		// gameResidentEvil.setId(2l);
@@ -238,10 +256,10 @@ public class DatabaseFiller {
 		gameResidentEvil.addTitle(new Title("Biohazard", LanguageKey.EN));
 		gameResidentEvil.addTitle(new Title("RE", LanguageKey.EN));
 
-		DaoManager.get().getGameDaoManager().saveEntity(gameResidentEvil);
+		gameDaoManager.saveEntity(gameResidentEvil);
 	}
 
-	public static void addXWingGame() {
+	public void addXWingGame() {
 		Game gameXWing = new Game();
 
 		gameXWing.setMainTitle("X-Wing");
@@ -276,10 +294,10 @@ public class DatabaseFiller {
 		ReleaseGroup rgMacEnhanced = new ReleaseGroup("Apple Macintosh", SystemKey.AppleMacintosh, ReleaseGroupType.Enhanced);
 		gameXWing.addReleaseGroup(rgMacEnhanced);
 
-		DaoManager.get().getGameDaoManager().saveEntity(gameXWing);
+		gameDaoManager.saveEntity(gameXWing);
 	}
 
-	public static void addUsers() {
+	public void addUsers() {
 
 		User userAdmin = new User();
 		userAdmin.setUsername("admin");
@@ -296,8 +314,14 @@ public class DatabaseFiller {
 		user.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
 		user.getRollList().add(RoleKey.User);
 
-		DaoManager.get().getUserDaoManager().saveEntity(userAdmin);
-		DaoManager.get().getUserDaoManager().saveEntity(user);
+		userDaoManager.saveEntity(userAdmin);
+		userDaoManager.saveEntity(user);
 
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		gameDaoManager = applicationContext.getBean(GameDaoManager.class);
+		userDaoManager = applicationContext.getBean(UserDaoManager.class);
 	}
 }

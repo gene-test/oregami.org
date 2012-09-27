@@ -43,6 +43,10 @@
       <param-name>Extension.Packages</param-name>
       <param-value>org.oregami.stripes.ext</param-value>
     </init-param>
+    <init-param>
+     <param-name>Interceptor.Classes</param-name>
+     <param-value>org.oregami.stripes.ext.Spring25Interceptor</param-value>
+    </init-param>
   </filter>
   <filter>
     <description>Dynamically maps URLs to ActionBeans.</description>
