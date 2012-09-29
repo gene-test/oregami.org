@@ -1,39 +1,41 @@
 package org.oregami.data;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 import org.oregami.entities.BaseEntity;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public abstract class AbstractDaoManager<T extends BaseEntity> implements BasicDaoManager<T> {
 
+	public abstract Class<T> getEntityClass();
+
+	@PersistenceContext(type = PersistenceContextType.TRANSACTION)
+	protected EntityManager entityManager;
+
 	@Override
+	@Transactional(readOnly = false)
 	public void saveEntity(T entity) {
-		EntityManagerFactory entityManagerFactory = HibernateJpaUtil.getEntityManagerFactory();
-
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		EntityTransaction tx = entityManager.getTransaction();
-		tx.begin();
-
+		entityManager.persist(entity);
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void updateEntity(T entity) {
-		// TODO Auto-generated method stub
-
+		entityManager.persist(entity);
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void deleteEntity(T entity) {
-		// TODO Auto-generated method stub
-
+		entityManager.remove(entity);
 	}
 
 	@Override
-	public T getEntityById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public T getEntityById(Object id) {
+		return entityManager.find(getEntityClass(), id);
 	}
-
 }

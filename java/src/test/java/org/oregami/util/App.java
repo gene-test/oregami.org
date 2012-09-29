@@ -14,26 +14,23 @@
  * 	You should have received a copy of the GNU Affero General Public License
  * 	along with this program. If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package org.oregami.data;
+package org.oregami.util;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
-public class HibernateJpaUtil {
+/**
+ * Hello world!
+ * 
+ */
+public class App {
 
-    private static final EntityManagerFactory emf;
+	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
 
-    static {
-        try {
-            // Create the EntityManagerFactory
-            emf = Persistence.createEntityManagerFactory("data");
-        } catch (Throwable ex) {
-            System.err.println("Initial EntityManagerFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
+	public static String now() {
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+		return sdf.format(cal.getTime());
+	}
 
-    public static EntityManagerFactory getEntityManagerFactory() {
-        return emf;
-    }
 }

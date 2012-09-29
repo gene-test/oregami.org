@@ -1,0 +1,12 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<!-- load the oregami.properties from the classpath. if used on a live server, you must have a oregami.properties with the correct properties in the classpath!  -->
+			<value>classpath:/oregami.properties</value>
+		</property>
+	</bean>
+</beans>

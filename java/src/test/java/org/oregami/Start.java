@@ -7,12 +7,14 @@ import org.eclipse.jetty.server.bio.SocketConnector;
 import org.eclipse.jetty.server.ssl.SslSocketConnector;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.oregami.data.DatabaseFiller;
 
 public class Start {
-	public static void main(String[] args) throws Exception {
 
+	public static void main(String[] args) throws Exception {
 		org.hsqldb.server.Server hsqlServer = startHSQLDb();
 		Server jettyServer = startJetty();
+		fillDatabase();
 
 		System.in.read();
 		System.out.println(">>> STOPPING EMBEDDED JETTY SERVER");
@@ -81,4 +83,13 @@ public class Start {
 
 		return server;
 	}
+
+	protected static void fillDatabase() {
+		DatabaseFiller databaseFiller = DatabaseFiller.get();
+		databaseFiller.addMonkeyIsland();
+		databaseFiller.addResidentEvilGame();
+		databaseFiller.addXWingGame();
+		databaseFiller.addUsers();
+	}
+
 }

@@ -14,27 +14,23 @@
  * 	You should have received a copy of the GNU Affero General Public License
  * 	along with this program. If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package org.oregami.data;
+package org.oregami.util;
 
-import org.oregami.entities.Game;
-import org.oregami.util.WebGuiService;
 
+@Deprecated
 public class WebApp {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		App.ensureDatabaseIsFilled();
-		
-		Game monkeyIsland = GameDAO.loadGameById(1);
-		
-		WebGuiService service = new WebGuiService();
-		
-		String webGui = service.getWebGui(monkeyIsland);
-		
-		System.out.println(webGui);
+		// Game monkeyIsland = DaoManager.get().getGameDaoManager().getEntityById(1);
+		//
+		// WebGuiService service = new WebGuiService();
+		//
+		// String webGui = service.getWebGui(monkeyIsland);
+		//
+		// System.out.println(webGui);
 
 	}
 
