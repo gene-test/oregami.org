@@ -34,7 +34,7 @@ public class GamesActionBean extends BaseActionBean implements ActionBean {
 	private List<Game> gameList = null;
 
 	@Autowired
-	private static GameDaoManager gameDaoManager;
+	private GameDaoManager gameDaoManager;
 
 	public Resolution defaultHandler() {
 		gameList = gameDaoManager.getAllGames();
