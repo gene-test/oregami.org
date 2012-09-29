@@ -49,3 +49,17 @@ table.release td{
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 
+
+span.error {
+	color: red;
+	font-size:80%;
+}
+
+table.form {
+	background-color: #eeeeee;
+	border: 1px solid #555555;
+}
+
+table.form tr td {
+	text-align: right;
+}

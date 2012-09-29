@@ -28,8 +28,18 @@ import org.oregami.stripes.ext.MyLocalePicker;
 
 public abstract class BaseActionBean implements ActionBean {
 
+	private String debugString = null;
+	
 	private ActionBeanContext context = null;
 	
+	public String getDebugString() {
+		return debugString;
+	}
+
+	public void setDebugString(String debugString) {
+		this.debugString = debugString;
+	}
+
 	@Override
 	public final ActionBeanContext getContext() {
 		return context;
