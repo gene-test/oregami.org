@@ -34,7 +34,7 @@ public class TreeActionBean extends BaseActionBean implements ActionBean {
 	private String gameId;
 
 	@Autowired
-	private static GameDaoManager gameDaoManager;
+	private GameDaoManager gameDaoManager;
 
 	public Resolution defaultHandler() {
 		loadedGame = gameDaoManager.getEntityById(Long.parseLong(gameId));
