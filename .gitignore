@@ -6,5 +6,6 @@ java/target
 /java/.settings
 /java/work
 /java/.settings
-/java/.project
-/java/.classpath
+#/java/.project
+#/java/.classpath
+/java/bin
