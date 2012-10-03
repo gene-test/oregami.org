@@ -1,13 +1,11 @@
 <%@ include file="/WEB-INF/taglibs.jspp"%>
+<stripes:layout-render name="/jsp/layout/main.jsp">
 
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="${contextPath}/css/style.css" />
+
+<stripes:layout-component name="html_head">
+
 <script src="${contextPath}/js/jquery-1.7.1.min.js"></script>
-
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
-
 <script src="${contextPath}/js/jquery-ui.custom.js"
 	type="text/javascript"></script>
 <script src="${contextPath}/js/jquery.cookie.js" type="text/javascript"></script>
@@ -15,12 +13,8 @@
 	type="text/css"></link>
 <script src="${contextPath}/js/jquery.dynatree.js"
 	type="text/javascript"></script>
-
 <script type="text/javascript" src="${contextPath}/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <link rel="stylesheet" href="${contextPath}/js/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-
-
-<title>Treeview of Game: ${actionBean.loadedGame.mainTitle}</title>
 
 <script type="text/javascript">
 
@@ -54,17 +48,20 @@
 		$("#xx").remove();
 	}
 </script>
+</stripes:layout-component>
 
 
-</head>
+<stripes:layout-component name="contents">
 
-<body>
+<!-- 
+<title>Treeview of Game: ${actionBean.loadedGame.mainTitle}</title>
+ -->
+ 
+
 
 	<span class="game_header">${actionBean.loadedGame.mainTitle}</span>
 	<span style="font-size: 60%;">${actionBean.loadedGame.description}</span>
 	<br />
-
-	<hr />
 
 	<button onclick="expandAll(true);">
 		<fmt:message key="expandAll" />
@@ -179,12 +176,7 @@
 		</ul>
 	</div>
 
-
-	<%@ include file="/loginbox.jsp"%>
-
-
-<div id="lightbox" style='background-colot:green;widht:100%;height:100%;position:absolute;top:0px;left:0px;'>
-</div>
-
-</body>
-</html>
+<%@ include file="/loginbox.jsp" %> 	
+	
+</stripes:layout-component>
+</stripes:layout-render>

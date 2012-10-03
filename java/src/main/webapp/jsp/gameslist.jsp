@@ -1,13 +1,7 @@
 <%@ include file="/WEB-INF/taglibs.jspp" %> 
+<stripes:layout-render name="/jsp/layout/main.jsp">
+<stripes:layout-component name="contents">
 
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
-<link rel="stylesheet" href="${contextPath}/css/style.css" />
-<title><fmt:message key="all_games"/></title>
-</head>
-
-<body>
 	<h2><fmt:message key="all_games"/></h2>
 	<ol>
 		<c:forEach items="${actionBean.gameList}" var="game">
@@ -20,7 +14,8 @@
 			</li>
 		</c:forEach>
 	</ol>
-<%@ include file="/loginbox.jsp" %> 
-
-</body>
-</html>
+	
+<%@ include file="/loginbox.jsp" %> 	
+	
+</stripes:layout-component>
+</stripes:layout-render>

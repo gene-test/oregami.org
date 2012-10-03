@@ -1,4 +1,6 @@
 <%@ include file="/WEB-INF/taglibs.jspp"%>
+<stripes:layout-render name="/jsp/layout/main.jsp">
+<stripes:layout-component name="contents">
 
 <html>
 <head>
@@ -98,7 +100,7 @@ $(document).ready(function() {
 </table>
 
 
-<%@ include file="/loginbox.jsp"%>
-
-</body>
-</html>
+<%@ include file="/loginbox.jsp" %> 	
+	
+</stripes:layout-component>
+</stripes:layout-render>
