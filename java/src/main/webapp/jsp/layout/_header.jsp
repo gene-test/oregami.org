@@ -1,6 +1,6 @@
 
 <div id="logo">
-	<img src="/images/oregami_logo.png">
+	<a href="${pageContext.request.contextPath}/"><img src="/images/oregami_logo.png" border="0"></a>
 </div>
 
 <center>
