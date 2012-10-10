@@ -1,27 +1,10 @@
 @CHARSET "UTF-8";
 
 
-body, td, span, p {
-	font-family: Arial;
-	font-size: 12pt;
-	padding: 0px;
-	margin-top:1px;
-}
-
 #logo {
 	position: fixed;
 	left: 10px;
 	top: 5px;
-}
-.content {
-	width:1000px;
-	border: 1px solid #dddddd;
-	text-align: left; 
-	padding:10px;
-}
-
-td {
-	vertical-align: top;	
 }
 
 .releaseGroup {
@@ -63,11 +46,6 @@ table.release td{
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 
-
-span.error {
-	color: red;
-	font-size:80%;
-}
 
 table.form {
 	background-color: #eeeeee;

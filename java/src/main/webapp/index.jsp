@@ -1,1 +1,1 @@
-<jsp:forward page="games"/>
+<jsp:forward page="site"/>
