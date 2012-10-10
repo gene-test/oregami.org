@@ -85,7 +85,7 @@
   </security-constraint>
   <login-config>
     <auth-method>BASIC</auth-method>
-    <realm-name>Oregami demo application</realm-name>
+    <realm-name>Oregami demo application (user=demo; password=demo)</realm-name>
   </login-config>
   <security-role>
     <description>The role that is required to access the demo pages</description>
