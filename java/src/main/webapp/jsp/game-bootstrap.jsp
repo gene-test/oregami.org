@@ -1,31 +1,14 @@
 <%@ include file="/WEB-INF/taglibs.jspp"%>
-<stripes:layout-render name="/jsp/layout/main.jsp">
-<stripes:layout-component name="html_head">
-
-<link rel="stylesheet" href="${contextPath}/css/easy-accordion.css" />
-<script src="${contextPath}/js/jquery.easyAccordion.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-	$('#accordion').easyAccordion({ 
-		autoStart: false,
-		slideNum: false
-	});	
-});
-</script> 
-
-</stripes:layout-component>
-
-
-
+<stripes:layout-render name="/jsp/layout/main.jsp" title="${actionBean.loadedGame.mainTitle}">
 <stripes:layout-component name="contents">
 
+<!-- 
 	<ul class="breadcrumb">
 		<li><a href="${pageContext.request.contextPath}/">Home</a> <span class="divider">/</span></li>
-		<li class="active">Accordeon-View: ${actionBean.loadedGame.mainTitle}</li>
+		<li class="active">Bootstrap-View: ${actionBean.loadedGame.mainTitle}</li>
 	</ul>
-	
-	<span class="game_header">${actionBean.loadedGame.mainTitle}</span>
+ -->
+		<span class="game_header">${actionBean.loadedGame.mainTitle}</span>
 	<span style="font-size: 60%;">${actionBean.loadedGame.description}</span>
 	<br />
 	<span class="game_subtitle"> <c:forEach

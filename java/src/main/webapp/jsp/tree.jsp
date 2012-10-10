@@ -53,12 +53,11 @@
 
 <stripes:layout-component name="contents">
 
-<!-- 
-<title>Treeview of Game: ${actionBean.loadedGame.mainTitle}</title>
- -->
- 
-
-
+	<ul class="breadcrumb">
+		<li><a href="${pageContext.request.contextPath}/">Home</a> <span class="divider">/</span></li>
+		<li class="active">Tree-View: ${actionBean.loadedGame.mainTitle}</li>
+	</ul>
+	
 	<span class="game_header">${actionBean.loadedGame.mainTitle}</span>
 	<span style="font-size: 60%;">${actionBean.loadedGame.description}</span>
 	<br />
@@ -176,7 +175,5 @@
 		</ul>
 	</div>
 
-<%@ include file="/loginbox.jsp" %> 	
-	
 </stripes:layout-component>
 </stripes:layout-render>

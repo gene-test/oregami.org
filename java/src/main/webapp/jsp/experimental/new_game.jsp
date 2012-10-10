@@ -15,42 +15,39 @@ $(document).ready(function() {
 
 <stripes:layout-component name="contents">
 
-<stripes:form beanclass="org.oregami.action.experimental.NewGameActionBean">
-<table class="form">
-	<tr>
-		<td>
-			mainTitle: <stripes:text name="game.mainTitle" class="required"/> 
-		</td>
-		<td>
+<div class="row well">
+
+<div class="span6">
+<stripes:form class="form-horizontal" beanclass="org.oregami.action.experimental.NewGameActionBean">
+	<div class="control-group">
+		<label class="control-label">mainTitle:</label>
+		<div class="controls">
+			<stripes:text name="game.mainTitle" class="required"/>
+			<br/>
 			<stripes:errors field="game.mainTitle"></stripes:errors>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			description: <stripes:text name="game.description"/>
-		</td>
-	</tr>
-	
-	<tr>
-		<td colspan="1">
-			<stripes:submit name="update"><fmt:message key="aktualisieren"/></stripes:submit>
-		</td>
-	</tr>
-
-<!-- 
-<c:if test="${actionBean.game != null}">	
-	<br/>
-	<stripes:submit name="save">Speichern</stripes:submit>
-</c:if>
- -->
-</table>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">description:</label>
+		<div class="controls">
+			<stripes:text name="game.description" class="required"/>
+		</div>
+		<stripes:errors field="game.description"></stripes:errors>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<!-- <button type="submit" class="btn"><fmt:message key="aktualisieren"/></button> -->
+			<stripes:submit class="btn" name="update"><fmt:message key="aktualisieren"/></stripes:submit>
+		</div>
+	</div>
+	<!--<stripes:submit name="update"><fmt:message key="aktualisieren"/></stripes:submit>-->
 </stripes:form>
+</div>
 
+</div>
 
 <hr/>
 <textarea style="width:100%;height:100px;">${actionBean.debugString}</textarea>
-
-<%@ include file="/loginbox.jsp" %> 	
 
 </stripes:layout-component>
 </stripes:layout-render>
