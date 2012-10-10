@@ -19,7 +19,8 @@
 		</c:forEach>
 	</ol>	
 	
-	<h6>Bootstrap-View</h6>
+	<br/><br/>
+	<h5>Bootstrap-View</h5>
 	<ol>
 		<c:forEach items="${actionBean.gameList}" var="game">
 			<li><stripes:link href="/game-bootstrap/${game.id}">${game.mainTitle}</stripes:link></li>
