@@ -70,6 +70,17 @@
 	<div id="tree">
 		<ul>
 			<li>${actionBean.loadedGame.mainTitle}</li>
+			
+			<c:if test="${!empty actionBean.loadedGame.gameTitleList}">
+				<li class='folder'>Titles
+					<ul>
+						<c:forEach items="${actionBean.loadedGame.gameTitleList}" var="gameTitle">
+							<li>${gameTitle.title}</li>
+						</c:forEach>
+					</ul>
+				</li>
+			</c:if>
+			
 			<c:if test="${!empty actionBean.loadedGame.releaseGroupList}">
 			<li class='folder'>ReleaseGroups (${fn:length(actionBean.loadedGame.releaseGroupList)})
 				<ul>
