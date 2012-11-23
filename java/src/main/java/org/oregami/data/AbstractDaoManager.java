@@ -17,7 +17,7 @@ public abstract class AbstractDaoManager<T extends BaseEntity> implements BasicD
 	protected EntityManager entityManager;
 
 	@Override
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 	public void saveEntity(T entity) {
 		entityManager.persist(entity);
 	}
