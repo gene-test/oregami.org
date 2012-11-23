@@ -33,24 +33,26 @@ import org.oregami.keyobjects.KeyObjects.SystemKey;
 @Entity
 public class Game extends BaseEntity implements WebGui {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2362683596950421365L;
 
-	private String mainTitle;
-
+	private String tagLineDescription;
+	
 	private String description;
+	
+	private String longDescription;
+	
+	private boolean compilation;
+	
+	private boolean addOn;
 
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn
+	private Collection<GameTitle> gameTitleList = new ArrayList<GameTitle>();
+	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@OrderBy("system ASC")
 	@JoinColumn
 	private Collection<ReleaseGroup> releaseGroupList = new ArrayList<ReleaseGroup>();
-
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@OrderBy("name ASC")
-	@JoinColumn
-	private Collection<Title> titleList = new ArrayList<Title>();
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn
@@ -61,25 +63,12 @@ public class Game extends BaseEntity implements WebGui {
 		vog.setGame(this);
 	}
 
-	public void addTitle(Title t) {
-		this.titleList.add(t);
-		t.setGame(this);
-	}
-
-	public Collection<Title> getTitleList() {
-		return titleList;
+	public void addGameTitle(GameTitle t) {
+		this.gameTitleList.add(t);
 	}
 
 	public Collection<ReleaseGroup> getReleaseGroupList() {
 		return releaseGroupList;
-	}
-
-	public String getMainTitle() {
-		return mainTitle;
-	}
-
-	public void setMainTitle(String mainTitle) {
-		this.mainTitle = mainTitle;
 	}
 
 	public String getDescription() {
@@ -115,23 +104,11 @@ public class Game extends BaseEntity implements WebGui {
 
 	}
 
-	public String toJson() {
-		StringBuffer json = new StringBuffer("");
-		json.append("{\n");
-		json.append("attributes: { id : 'node_1' , rel : 'drive' },\n");
-		json.append("data: 'game: " + this.getMainTitle() + "',\n");
-		json.append("}");
-		/*
-		 * { attributes: { id : "node_1" , rel : "drive" }, data: "C:", icons: "images/hd.png", state: "open", children: [
-		 */
-		return json.toString();
-	}
-
 	@Override
 	public String toWebString() {
 
 		String ret = "";
-		ret += "<li>" + this.getMainTitle() + "</li>\n";
+//		ret += "<li>" + this.getMainTitle() + "</li>\n";
 		ret += "<li class='folder'>ReleaseGroups (" + releaseGroupList.size() + ")\n";
 		ret += "<ul>\n";
 		for (ReleaseGroup releaseGroup : this.getReleaseGroupList()) {
@@ -156,4 +133,49 @@ public class Game extends BaseEntity implements WebGui {
 
 	}
 
+	public String getTagLineDescription() {
+		return tagLineDescription;
+	}
+
+	public void setTagLineDescription(String tagLineDescription) {
+		this.tagLineDescription = tagLineDescription;
+	}
+
+	public String getLongDescription() {
+		return longDescription;
+	}
+
+	public void setLongDescription(String longDescription) {
+		this.longDescription = longDescription;
+	}
+
+	public boolean isCompilation() {
+		return compilation;
+	}
+
+	public void setCompilation(boolean compilation) {
+		this.compilation = compilation;
+	}
+
+	public boolean isAddOn() {
+		return addOn;
+	}
+
+	public void setAddOn(boolean addOn) {
+		this.addOn = addOn;
+	}
+
+	public Collection<GameTitle> getGameTitleList() {
+		return gameTitleList;
+	}
+
+	public String getMainTitle() {
+		String ret = "[missing title for game with id " + getId() + "!]";
+		if (getGameTitleList()!=null && !getGameTitleList().isEmpty()) {
+			ret = 
+					"mt: " + 
+				getGameTitleList().iterator().next().getTitle();
+		}
+		return ret;
+	}
 }

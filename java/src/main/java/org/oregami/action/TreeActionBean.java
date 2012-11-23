@@ -38,7 +38,7 @@ public class TreeActionBean extends BaseActionBean implements ActionBean {
 
 	public Resolution defaultHandler() {
 		loadedGame = gameDaoManager.getEntityById(Long.parseLong(gameId));
-		System.out.println("Geladen: " + loadedGame.getMainTitle() + " (" + loadedGame.getDescription() + ")");
+//		System.out.println("Geladen: " + loadedGame.getMainTitle() + " (" + loadedGame.getDescription() + ")");
 		return new ForwardResolution("/jsp/tree.jsp");
 	}
 

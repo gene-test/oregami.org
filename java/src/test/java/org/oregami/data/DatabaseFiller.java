@@ -5,15 +5,14 @@ import java.util.Date;
 
 import org.oregami.entities.CountryRelease;
 import org.oregami.entities.Game;
+import org.oregami.entities.GameTitle;
 import org.oregami.entities.Photo;
 import org.oregami.entities.Release;
 import org.oregami.entities.ReleaseGroup;
 import org.oregami.entities.Screenshot;
-import org.oregami.entities.Title;
 import org.oregami.entities.User;
 import org.oregami.keyobjects.KeyObjects.CountryKey;
 import org.oregami.keyobjects.KeyObjects.DistributionKey;
-import org.oregami.keyobjects.KeyObjects.LanguageKey;
 import org.oregami.keyobjects.KeyObjects.PhotoType;
 import org.oregami.keyobjects.KeyObjects.ReleaseGroupType;
 import org.oregami.keyobjects.KeyObjects.RoleKey;
@@ -49,8 +48,12 @@ public class DatabaseFiller implements ApplicationContextAware {
 
 	public void addMonkeyIsland() {
 		Game gameMonkeyIsland = new Game();
+		
+		gameMonkeyIsland.addGameTitle(new GameTitle("Monkey Island"));
+		gameMonkeyIsland.addGameTitle(new GameTitle("Monkey Island 1"));
+		gameMonkeyIsland.addGameTitle(new GameTitle("The Secret of Monkey Island"));
 
-		gameMonkeyIsland.setMainTitle("Monkey Island");
+		gameMonkeyIsland.setTagLineDescription("Monkey Island tld");
 		gameMonkeyIsland.setDescription("Tolles Spiel mit viel Humor! (" + new Date() + ")");
 
 		ReleaseGroup releaseGroupDos = new ReleaseGroup("DOS", SystemKey.MSDOS, ReleaseGroupType.Original);
@@ -176,9 +179,6 @@ public class DatabaseFiller implements ApplicationContextAware {
 		gameMonkeyIsland.addReleaseGroup(releaseGroupApple);
 		gameMonkeyIsland.addReleaseGroup(vogAppleSpecial);
 
-		gameMonkeyIsland.addTitle(new Title("The Secret of Monkey Island 2", LanguageKey.DE));
-		gameMonkeyIsland.addTitle(new Title("The Secret of Monkey Island 2: Le Chuck's Revenge", LanguageKey.EN));
-
 		gameDaoManager.saveEntity(gameMonkeyIsland);
 	}
 
@@ -187,8 +187,10 @@ public class DatabaseFiller implements ApplicationContextAware {
 		Game gameResidentEvil = new Game();
 		// gameResidentEvil.setId(2l);
 
-		gameResidentEvil.setMainTitle("Resident Evil");
+		gameResidentEvil.setTagLineDescription("Resident Evil tld");
 		gameResidentEvil.setDescription("Horror-Shooter (" + new Date() + ")");
+		
+		gameResidentEvil.addGameTitle(new GameTitle("Resident Evil"));
 
 		ReleaseGroup releaseGroupPlaystation = new ReleaseGroup("Playstation", SystemKey.SonyPlaystation, ReleaseGroupType.Original);
 
@@ -252,19 +254,15 @@ public class DatabaseFiller implements ApplicationContextAware {
 
 		gameResidentEvil.addReleaseGroup(releaseGroupWindows);
 
-		gameResidentEvil.addTitle(new Title("Resident Evil", LanguageKey.DE));
-		gameResidentEvil.addTitle(new Title("Biohazard", LanguageKey.EN));
-		gameResidentEvil.addTitle(new Title("RE", LanguageKey.EN));
-
 		gameDaoManager.saveEntity(gameResidentEvil);
 	}
 
 	public void addXWingGame() {
 		Game gameXWing = new Game();
 
-		gameXWing.setMainTitle("X-Wing");
-		gameXWing.addTitle(new Title("Star Wars - X-Wing: Space Combat Simulator", LanguageKey.EN));
-		gameXWing.addTitle(new Title("Star Wars - X-Wing", LanguageKey.EN));
+		gameXWing.setTagLineDescription("X-Wing tld");
+		gameXWing.addGameTitle(new GameTitle("Star Wars - X-Wing"));
+		gameXWing.addGameTitle(new GameTitle("Star Wars - X-Wing: Space Combat Simulator"));
 
 		ReleaseGroup rgDos = new ReleaseGroup("DOS", SystemKey.MSDOS, ReleaseGroupType.Original);
 		gameXWing.addReleaseGroup(rgDos);
