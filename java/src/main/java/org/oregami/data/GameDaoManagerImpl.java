@@ -21,8 +21,16 @@ public class GameDaoManagerImpl extends AbstractDaoManager<Game> implements Game
 		CriteriaQuery<Game> query = entityManager.getCriteriaBuilder().createQuery(Game.class);
 		query.select(query.from(Game.class));
 
-		return entityManager.createQuery(query).getResultList();
+		List<Game> list = entityManager.createQuery(query).getResultList();
+		if (list==null || list.isEmpty()) {
+			synchronized (this) {
+				fillDatabase();
+				list = entityManager.createQuery(query).getResultList();
+			}
+		}
+		return list;
 	}
+	
 
 	@Override
 	public Integer countAllGames() {
@@ -31,6 +39,15 @@ public class GameDaoManagerImpl extends AbstractDaoManager<Game> implements Game
 		query.select(criteriaBuilder.count(query.from(Game.class)));
 
 		return entityManager.createQuery(query).getSingleResult().intValue();
+	}
+	
+	
+	private void fillDatabase() {
+		DatabaseFiller databaseFiller = DatabaseFiller.get();
+		databaseFiller.addMonkeyIsland();
+		databaseFiller.addResidentEvilGame();
+		databaseFiller.addXWingGame();
+		databaseFiller.addUsers();
 	}
 
 }
