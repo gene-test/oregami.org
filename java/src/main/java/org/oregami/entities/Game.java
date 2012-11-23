@@ -173,7 +173,7 @@ public class Game extends BaseEntity implements WebGui {
 		String ret = "[missing title for game with id " + getId() + "!]";
 		if (getGameTitleList()!=null && !getGameTitleList().isEmpty()) {
 			ret = 
-					"mt: " + 
+//					"mt: " + 
 				getGameTitleList().iterator().next().getTitle();
 		}
 		return ret;
