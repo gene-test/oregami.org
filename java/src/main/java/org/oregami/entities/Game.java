@@ -25,6 +25,7 @@ import java.util.TreeMap;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
@@ -46,7 +47,7 @@ public class Game extends BaseEntity implements WebGui {
 	private boolean addOn;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn
+	@JoinTable
 	private Collection<GameTitle> gameTitleList = new ArrayList<GameTitle>();
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -171,10 +172,11 @@ public class Game extends BaseEntity implements WebGui {
 
 	public String getMainTitle() {
 		String ret = "[missing title for game with id " + getId() + "!]";
-		if (getGameTitleList()!=null && !getGameTitleList().isEmpty()) {
+		Collection<GameTitle> list = getGameTitleList();
+		if (list!=null && !list.isEmpty()) {
 			ret = 
 //					"mt: " + 
-				getGameTitleList().iterator().next().getTitle();
+				((GameTitle)list.toArray()[0]).getTitle();
 		}
 		return ret;
 	}
