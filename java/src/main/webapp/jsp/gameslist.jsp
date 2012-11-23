@@ -12,15 +12,17 @@
 		</c:forEach>
 	</ol>
 	
+	<!-- 
 	<h4>Accordeon-View</h4>
 	<ol>
 		<c:forEach items="${actionBean.gameList}" var="game">
 			<li><stripes:link href="/game/${game.id}">${game.mainTitle}</stripes:link></li>
 		</c:forEach>
 	</ol>	
+	 -->
 	
-	<br/><br/>
-	<h5>Bootstrap-View</h5>
+	<br/>
+	<h4>Bootstrap-View</h4>
 	<ol>
 		<c:forEach items="${actionBean.gameList}" var="game">
 			<li><stripes:link href="/game-bootstrap/${game.id}">${game.mainTitle}</stripes:link></li>
